@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FloatingWindowLibrary</string>
+    <string name="min_net_window_str">NET</string>
+    <string name="cur_net_status">当前网络:</string>
+    <string name="launch_this_time">本次启动:</string>
+    <string name="cur_speed_per_second">当前消耗:</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="style_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="style_net_description" parent="style_wrap">
+        <item name="android:textSize">17dp</item>
+        <item name="android:textColor">@color/color_FF333333</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="style_net_value" parent="style_wrap">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/color_FF333333</item>
+        <item name="android:padding">10dp</item>
+    </style>
+</resources>

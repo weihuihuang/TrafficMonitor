@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/net_floating_window_max_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btn_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="@dimen/window_max_btn_padding"
+            android:src="@mipmap/net_floating_max_btn" />
+
+        <ImageView
+            android:id="@+id/btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/window_max_btn_padding"
+            android:src="@mipmap/net_floating_close_btn" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/style_net_description"
+            android:text="@string/cur_net_status" />
+
+        <TextView
+            android:id="@+id/net_status"
+            style="@style/style_net_value" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/style_net_description"
+            android:text="@string/launch_this_time" />
+
+        <TextView
+            android:id="@+id/traffic_increased"
+            style="@style/style_net_value" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/style_net_description"
+            android:text="@string/cur_speed_per_second" />
+
+        <TextView
+            android:id="@+id/net_speed"
+            style="@style/style_net_value" />
+    </LinearLayout>
+
+</LinearLayout>

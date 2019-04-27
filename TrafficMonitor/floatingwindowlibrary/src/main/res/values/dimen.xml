@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="window_max_bg_radius">8dp</dimen>
+    <dimen name="window_max_btn_padding">8dp</dimen>
+    <dimen name="window_min_bg_hight">60dp</dimen>
+    <dimen name="window_min_bg_width">60dp</dimen>
+    <dimen name="window_min_layout_margin">25dp</dimen>
+    <dimen name="window_min_layout_text_size">16dp</dimen>
+</resources>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Traffic Monitor</string>
+    <string name="click_to_load">点击加载</string>
+</resources>

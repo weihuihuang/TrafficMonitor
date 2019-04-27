@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="click_to_loadtn_padding">50dp</dimen>
+</resources>
