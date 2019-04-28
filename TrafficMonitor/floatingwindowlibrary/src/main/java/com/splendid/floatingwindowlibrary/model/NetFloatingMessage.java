@@ -93,16 +93,16 @@ public class NetFloatingMessage {
             return "0kb/s";
         }
         //int kb = (int) Math.floor(bytes / 1024 + 0.5);
-        double kb = changePerSecond > M_UNIT_BYTE ? (double) changePerSecond / (M_UNIT_BYTE) : (double) changePerSecond / KB_UNIT_BYTE;
+        double kb = changePerSecond > M_UNIT_BYTE ? (double) changePerSecond / M_UNIT_BYTE : (double) changePerSecond / KB_UNIT_BYTE;
         BigDecimal bd = new BigDecimal(kb);
-        return bd.setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue() + getUnit(changePerSecond) + "/s";
+        return bd.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue() + getUnit(changePerSecond) + "/s";
     }
 
     public String getTotalTrafficIncreased() {
         if (totalTrafficIncreased == 0) {
             return "0kb";
         }
-        double kb = totalTrafficIncreased > M_UNIT_BYTE ? (double) totalTrafficIncreased / ((double) M_UNIT_BYTE) : totalTrafficIncreased / KB_UNIT_BYTE;
+        double kb = totalTrafficIncreased > M_UNIT_BYTE ? (double) totalTrafficIncreased / M_UNIT_BYTE : (double) totalTrafficIncreased / KB_UNIT_BYTE;
         BigDecimal bd = new BigDecimal(kb);
         return bd.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue() + getUnit(totalTrafficIncreased);
     }
