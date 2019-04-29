@@ -3,5 +3,7 @@
     <string name="min_net_window_str">NET</string>
     <string name="cur_net_status">当前网络:</string>
     <string name="launch_this_time">本次启动:</string>
-    <string name="cur_speed_per_second">当前消耗:</string>
+    <string name="send_speed_per_second">发送速率:</string>
+    <string name="receive_speed_per_second">接收速率:</string>
+    <string name="cur_speed_per_second">当前速率:</string>
 </resources>

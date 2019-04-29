@@ -42,6 +42,10 @@ public class NetFloatingWindow {
 
     private TextView mTrafficIncreasedTv;
 
+    private TextView mSendSpeedTv;
+
+    private TextView mReceiveSpeedTv;
+
     private TextView mNetSpeedTv;
 
     private NetFloatingMessage message;
@@ -218,6 +222,8 @@ public class NetFloatingWindow {
     private void initWindowMaxChildView() {
         mNetStatusTv = mContentView.findViewById(R.id.net_status);
         mTrafficIncreasedTv = mContentView.findViewById(R.id.traffic_increased);
+        mSendSpeedTv = mContentView.findViewById(R.id.send_speed);
+        mReceiveSpeedTv = mContentView.findViewById(R.id.receive_speed);
         mNetSpeedTv = mContentView.findViewById(R.id.net_speed);
     }
 
@@ -259,13 +265,15 @@ public class NetFloatingWindow {
         if (message == null) {
             message = new NetFloatingMessage(getContext(),period);
         }
+        message.calculaTraffic();
         if (message.isFirstInitFlag()) {
             message.setFirstInitFlag(false);
             return;
         }
-        message.calculaTraffic();
         mNetStatusTv.setText(CommonUtil.getNetStatus(context));
         mTrafficIncreasedTv.setText(message.getTotalTrafficIncreased());
+        mSendSpeedTv.setText(message.getSendSpeed());
+        mReceiveSpeedTv.setText(message.getReceiveSpeed());
         mNetSpeedTv.setText(message.getNetSpeed());
     }
 

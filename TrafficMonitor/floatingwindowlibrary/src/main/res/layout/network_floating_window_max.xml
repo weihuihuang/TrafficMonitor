@@ -61,6 +61,35 @@
 
         <TextView
             style="@style/style_net_description"
+            android:text="@string/send_speed_per_second" />
+
+        <TextView
+            android:id="@+id/send_speed"
+            style="@style/style_net_value" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/style_net_description"
+            android:text="@string/receive_speed_per_second" />
+
+        <TextView
+            android:id="@+id/receive_speed"
+            style="@style/style_net_value" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/style_net_description"
             android:text="@string/cur_speed_per_second" />
 
         <TextView

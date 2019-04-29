@@ -20,19 +20,29 @@ public class NetFloatingMessage {
 
     private long totalTrafficFirstInit; //第一次计算得到的流量总数
 
+    private long lastTotalSend; //上一次计算得到的发送流量总数
+
+    private long lastTotalReceive; //上一次计算得到的接收流量总数
+
     private long totalTrafficIncreased; //开启悬浮窗后流量总增量
 
-    private long changePerSecond;       //每秒消耗增量
+    private long sendPerSecond;       //发送速率
+
+    private long receivePerSecond;    //接收速率
+
+    private long changePerSecond;     //总速率
 
     private int uid = -1;
 
-    private boolean firstInitFlag;
+    private boolean firstInitFlag = true;
 
     private final static int M_UNIT_BYTE = 1024 * 1024;
 
     private final static int KB_UNIT_BYTE = 1024;
 
     private final static int INVALID_UID = -1;
+
+    private final static int MILLSECOND_CHNAGE_SECOND_UNIT = 1000;
 
     private Context context;
 
@@ -79,23 +89,29 @@ public class NetFloatingMessage {
             } catch (IOException ignore) {
             }
         }
-        long totalTraffic = receiveTraffic + sendTraffic;
-        if (totalTrafficFirstInit == 0) {
+        long totalTraffic = sendTraffic + receiveTraffic;
+
+        if (firstInitFlag) {
             totalTrafficFirstInit = totalTraffic;
+            lastTotalSend = sendTraffic;
+            lastTotalReceive = receiveTraffic;
+        } else {
+
+            sendPerSecond = (sendTraffic - lastTotalSend) * MILLSECOND_CHNAGE_SECOND_UNIT / period;
+
+            receivePerSecond = (receiveTraffic - lastTotalReceive) * MILLSECOND_CHNAGE_SECOND_UNIT / period;
+
+            totalTrafficIncreased = totalTraffic - totalTrafficFirstInit;
+
+            changePerSecond = (sendTraffic + receiveTraffic - lastTotalSend - lastTotalReceive) * MILLSECOND_CHNAGE_SECOND_UNIT / period;
+
+            lastTotalSend = sendTraffic;
+            lastTotalReceive = receiveTraffic;
         }
-        long totalTrafficIncreasedBefore = totalTrafficIncreased;
-        totalTrafficIncreased = totalTraffic - totalTrafficFirstInit;
-        changePerSecond = (totalTrafficIncreased - totalTrafficIncreasedBefore) * 1000 / period;
     }
 
     public String getNetSpeed() {
-        if (changePerSecond == 0) {
-            return "0kb/s";
-        }
-        //int kb = (int) Math.floor(bytes / 1024 + 0.5);
-        double kb = changePerSecond > M_UNIT_BYTE ? (double) changePerSecond / M_UNIT_BYTE : (double) changePerSecond / KB_UNIT_BYTE;
-        BigDecimal bd = new BigDecimal(kb);
-        return bd.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue() + getUnit(changePerSecond) + "/s";
+        return getSpeed(changePerSecond);
     }
 
     public String getTotalTrafficIncreased() {
@@ -105,6 +121,24 @@ public class NetFloatingMessage {
         double kb = totalTrafficIncreased > M_UNIT_BYTE ? (double) totalTrafficIncreased / M_UNIT_BYTE : (double) totalTrafficIncreased / KB_UNIT_BYTE;
         BigDecimal bd = new BigDecimal(kb);
         return bd.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue() + getUnit(totalTrafficIncreased);
+    }
+
+    public String getSendSpeed() {
+        return getSpeed(sendPerSecond);
+    }
+
+    public String getReceiveSpeed() {
+        return getSpeed(receivePerSecond);
+    }
+
+    public String getSpeed(long totalBytes) {
+        if (totalBytes == 0) {
+            return "0kb/s";
+        }
+        //int kb = (int) Math.floor(bytes / 1024 + 0.5);
+        double kb = totalBytes > M_UNIT_BYTE ? (double) totalBytes / M_UNIT_BYTE : (double) totalBytes / KB_UNIT_BYTE;
+        BigDecimal bd = new BigDecimal(kb);
+        return bd.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue() + getUnit(totalBytes) + "/s";
     }
 
     private String getUnit(long value) {
